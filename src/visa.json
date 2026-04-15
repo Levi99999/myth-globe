@@ -1,0 +1,32 @@
+{
+  "日本": {
+    "type": "免签",
+    "stay": "90天",
+    "note": "短期停留免签",
+    "link": "https://cs.mfa.gov.cn/"
+  },
+  "韩国": {
+    "type": "免签（部分条件）",
+    "stay": "30天",
+    "note": "济州岛等地区免签",
+    "link": "https://cs.mfa.gov.cn/"
+  },
+  "美国": {
+    "type": "需签证",
+    "stay": "视签证类型",
+    "note": "需申请B1/B2签证",
+    "link": "https://cs.mfa.gov.cn/"
+  },
+  "法国": {
+    "type": "申根签证",
+    "stay": "90天",
+    "note": "需申请申根签证",
+    "link": "https://cs.mfa.gov.cn/"
+  },
+  "泰国": {
+    "type": "免签",
+    "stay": "30天",
+    "note": "阶段性免签政策",
+    "link": "https://cs.mfa.gov.cn/"
+  }
+}

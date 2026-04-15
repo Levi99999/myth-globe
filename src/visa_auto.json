@@ -1,0 +1,93 @@
+{
+  "中国": {
+    "type": "需签证",
+    "stay": "以官方为准",
+    "note": "需办理签证或以官方政策为准",
+    "lastUpdated": "2026-04-15",
+    "official": "https://cs.mfa.gov.cn/"
+  },
+  "日本": {
+    "type": "需签证",
+    "stay": "以官方为准",
+    "note": "需办理签证或以官方政策为准",
+    "lastUpdated": "2026-04-15",
+    "official": "https://cs.mfa.gov.cn/"
+  },
+  "韩国": {
+    "type": "需签证",
+    "stay": "以官方为准",
+    "note": "需办理签证或以官方政策为准",
+    "lastUpdated": "2026-04-15",
+    "official": "https://cs.mfa.gov.cn/"
+  },
+  "美国": {
+    "type": "需签证",
+    "stay": "以官方为准",
+    "note": "需办理签证或以官方政策为准",
+    "lastUpdated": "2026-04-15",
+    "official": "https://cs.mfa.gov.cn/"
+  },
+  "法国": {
+    "type": "需签证",
+    "stay": "以官方为准",
+    "note": "需办理签证或以官方政策为准",
+    "lastUpdated": "2026-04-15",
+    "official": "https://cs.mfa.gov.cn/"
+  },
+  "泰国": {
+    "type": "免签",
+    "stay": "以官方为准",
+    "note": "免签入境，具体停留时间以官方为准",
+    "lastUpdated": "2026-04-15",
+    "official": "https://cs.mfa.gov.cn/"
+  },
+  "英国": {
+    "type": "需签证",
+    "stay": "以官方为准",
+    "note": "需办理签证或以官方政策为准",
+    "lastUpdated": "2026-04-15",
+    "official": "https://cs.mfa.gov.cn/"
+  },
+  "新加坡": {
+    "type": "免签",
+    "stay": "以官方为准",
+    "note": "免签入境，具体停留时间以官方为准",
+    "lastUpdated": "2026-04-15",
+    "official": "https://cs.mfa.gov.cn/"
+  },
+  "马来西亚": {
+    "type": "免签",
+    "stay": "以官方为准",
+    "note": "免签入境，具体停留时间以官方为准",
+    "lastUpdated": "2026-04-15",
+    "official": "https://cs.mfa.gov.cn/"
+  },
+  "阿联酋": {
+    "type": "免签",
+    "stay": "以官方为准",
+    "note": "免签入境，具体停留时间以官方为准",
+    "lastUpdated": "2026-04-15",
+    "official": "https://cs.mfa.gov.cn/"
+  },
+  "印度": {
+    "type": "需签证",
+    "stay": "以官方为准",
+    "note": "需办理签证或以官方政策为准",
+    "lastUpdated": "2026-04-15",
+    "official": "https://cs.mfa.gov.cn/"
+  },
+  "土耳其": {
+    "type": "需签证",
+    "stay": "以官方为准",
+    "note": "需办理签证或以官方政策为准",
+    "lastUpdated": "2026-04-15",
+    "official": "https://cs.mfa.gov.cn/"
+  },
+  "越南": {
+    "type": "需签证",
+    "stay": "以官方为准",
+    "note": "需办理签证或以官方政策为准",
+    "lastUpdated": "2026-04-15",
+    "official": "https://cs.mfa.gov.cn/"
+  }
+}

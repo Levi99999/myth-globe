@@ -1,4 +1,8 @@
 import Globe from 'globe.gl';
+import visaAutoData from './visa_auto.json';
+import visaData from './visa.json'; // 你原来的
+
+
 
 // ================= 🌍 全局数据 =================
 let allCountries = [];
@@ -321,17 +325,18 @@ function focusCountry(d) {
 
 // ================= 🌍 右侧卡片 =================
 async function showInfo(d) {
-  const en = d.properties.name;
-  const info = getCountryInfo(en);
+  const rawName = d.properties.name;
+  const info = getCountryInfo(rawName);
   const zh = info.zh;
-
-  // 🔥 用匹配后的国家名拿 meta
   const meta = countryMeta[info.enMatched] || {};
 
   infoBox.style.display = "block";
   infoBox.innerHTML = `<h2>${zh}</h2><p>加载中...</p>`;
 
   try {
+    
+
+    // ===== 📖 维基 =====
     const res = await fetch(
       `https://zh.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(zh)}`
     );
@@ -339,9 +344,9 @@ async function showInfo(d) {
 
     const text = data.extract || "";
     const wikiLink = `https://zh.wikipedia.org/wiki/${encodeURIComponent(zh)}`;
-
     const museumCount = (text.match(/博物馆/g) || []).length;
 
+    // ===== 💰 汇率 =====
     let rateText = "暂无";
     if (meta.currencyCode && rates[meta.currencyCode]) {
       const usdToLocal = rates[meta.currencyCode];
@@ -349,54 +354,70 @@ async function showInfo(d) {
       rateText = `1 ${meta.currencyCode} ≈ ${localToCny.toFixed(2)} 人民币`;
     }
 
+    // ===== 🛂 签证 =====
+    const visa = visaData[zh] || visaAutoData[zh];
+    let visaHTML = "<p>暂无信息</p>";
+
+    if (visa) {
+      visaHTML = `
+        <p>类型：${visa.type}</p>
+        <p>停留：${visa.stay}</p>
+        <p>说明：${visa.note}</p>
+        <p>
+          🔗 <a href="${visa.link}" target="_blank" style="color:#0ff">
+          官方信息（外交部）
+          </a>
+        </p>
+      `;
+    }
+
+    // ===== UI 渲染 =====
     infoBox.innerHTML = `
-  <div style="position:relative">
+      <div style="position:relative">
 
-    <div id="closeBtn"
-      style="
-        position:absolute;
-        top:0;
-        right:0;
-        cursor:pointer;
-        font-size:18px;
-        color:#fff;
-      ">
-      ✖
-    </div>
+        <div id="closeBtn"
+          style="position:absolute;top:0;right:0;cursor:pointer;font-size:18px;">
+          ✖
+        </div>
 
-    <h2>${zh}</h2>
-    ${meta.flag ? `<img src="${meta.flag}" style="width:60px">` : ""}
-    <h3>📖 国家简介</h3>
-    <p>${text}</p>
+        <h2>${zh}</h2>
 
-    <h3>🏛 博物馆</h3>
-    <p>提及约：${museumCount} 次</p>
+        ${meta.flag ? `<img src="${meta.flag}" style="width:60px">` : ""}
 
-    <h3>💰 货币</h3>
-    <p>${meta.currencyName || "未知"}（${meta.currencyCode || ""}）</p>
-    <p>${rateText}</p>
+        <h3>📖 国家简介</h3>
+        <p>${text}</p>
 
-    <p>
-      🔗 <a href="${wikiLink}" target="_blank" style="color:#0ff">
-      查看维基百科
-      </a>
-    </p>
 
-  </div>
-`;
 
-// 👇 绑定点击事件
-document.getElementById('closeBtn').onclick = closeInfo;
-document.addEventListener('click', (e) => {
-  if (!infoBox.contains(e.target)) {
-    infoBox.style.display = 'none';
-  }
-});
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeInfo();
-});
 
-  } catch {
+
+
+
+        <h3>🛂 签证信息</h3>
+        ${visaHTML}
+
+        <h3>🏛 博物馆</h3>
+        <p>提及约：${museumCount} 次</p>
+
+        <h3>💰 货币</h3>
+        <p>${meta.currencyName || "未知"}（${meta.currencyCode || ""}）</p>
+        <p>${rateText}</p>
+
+        <p>
+          🔗 <a href="${wikiLink}" target="_blank" style="color:#0ff">
+          查看维基百科
+          </a>
+        </p>
+
+      </div>
+    `;
+
+    document.getElementById('closeBtn').onclick = () => {
+      infoBox.style.display = "none";
+    };
+
+  } catch (err) {
+    console.error(err);
     infoBox.innerHTML = `<h2>${zh}</h2><p>加载失败</p>`;
   }
 }
